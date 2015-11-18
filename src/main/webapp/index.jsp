@@ -1,8 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Form Page</title>
+</head>
 <body>
-    <h2>Jersey RESTful Web Application!</h2>
-    <p><a href="webapi/api/track">Jersey resource</a>
-    <p>Visit <a href="http://jersey.java.net">Project Jersey website</a>
-    for more information on Jersey!
+<h1>Upload a File</h1>
+
+<form action="webapi/files/upload" method="post" enctype="multipart/form-data">
+
+    <p>
+        Select a file : <input type="file" name="file" size="50" />
+    </p>
+
+    <input type="submit" value="Upload It" />
+</form>
+
 </body>
 </html>
