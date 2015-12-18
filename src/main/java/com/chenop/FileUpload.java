@@ -1,7 +1,9 @@
 package com.chenop;
 
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataParam;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,8 +18,6 @@ import java.io.*;
 @Path("files")
 public class FileUpload {
 
-    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C://Users/nikos/Desktop/Upload_Files/";
-
     /**
      * Upload a File
      */
@@ -25,41 +25,14 @@ public class FileUpload {
     @POST
     @Path("upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(
-            @FormDataParam("file") InputStream fileInputStream,
-            @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+    public Response uploadPdfFile(  @FormDataParam("file") InputStream fileInputStream,
+                                    @FormDataParam("file") FormDataContentDisposition fileMetaData) throws Exception
+    {
+        XWPFDocument document = new XWPFDocument(fileInputStream);
+        XWPFWordExtractor wordExtractor = new XWPFWordExtractor(document);
+        String text = wordExtractor.getText();
+        System.out.println("result: " + text);
 
-        String filePath = SERVER_UPLOAD_LOCATION_FOLDER	+ contentDispositionHeader.getFileName();
-
-        // save the file to the server
-        saveFile(fileInputStream, filePath);
-
-        String output = "File saved to server location : " + filePath;
-
-        return Response.status(200).entity(output).build();
-
+        return Response.ok("result: " + text).build();
     }
-
-    // save uploaded file to a defined location on the server
-    private void saveFile(InputStream uploadedInputStream,
-                          String serverLocation) {
-
-        try {
-            OutputStream outpuStream = new FileOutputStream(new File(serverLocation));
-            int read = 0;
-            byte[] bytes = new byte[1024];
-
-            outpuStream = new FileOutputStream(new File(serverLocation));
-            while ((read = uploadedInputStream.read(bytes)) != -1) {
-                outpuStream.write(bytes, 0, read);
-            }
-            outpuStream.flush();
-            outpuStream.close();
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-
-    }
-
 }
