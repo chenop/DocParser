@@ -1,4 +1,4 @@
-package com.chenop;
+package com.chenop.models;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

@@ -1,4 +1,4 @@
-package com.chenop;
+package com.chenop.models;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

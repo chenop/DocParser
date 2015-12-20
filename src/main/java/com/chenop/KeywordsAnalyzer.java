@@ -1,5 +1,8 @@
 package com.chenop;
 
+import com.chenop.db.DBHelper;
+import com.chenop.models.CaseInsensitiveList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,12 +32,10 @@ public class KeywordsAnalyzer {
     }
 
     public static CaseInsensitiveList getKeywords() {
+        List<String> result = DBHelper.INSTANCE.getKeywords();
+
         CaseInsensitiveList keywords = new CaseInsensitiveList();
-        keywords.add("C#");
-        keywords.add("AngularJS");
-        keywords.add("GUI");
-        keywords.add("Java");
-        keywords.add("JavaScript");
+        keywords.addAll(result);
         return keywords;
     }
 }
