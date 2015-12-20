@@ -1,4 +1,4 @@
-package com.chenop;
+package com.chenop.api;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;

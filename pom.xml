@@ -80,7 +80,6 @@
             <version>${poi.version}</version>
         </dependency>
 
-        // Unit Tests Stuff - Start
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -93,15 +92,11 @@
             <version>4.12</version>
         </dependency>
 
-        // Unit Tests Stuff - End
-
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-parsers</artifactId>
             <version>1.11</version>
         </dependency>
-
-
     </dependencies>
 
 </project>
