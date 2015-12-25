@@ -3,21 +3,19 @@ package com.chenop;
 import com.chenop.db.DBHelper;
 import com.chenop.models.CaseInsensitiveList;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Chen.Oppenhaim on 12/20/2015.
  */
 public class KeywordsAnalyzer {
 
-    public static List<String> extractKeywords(String text) {
+    public static TreeSet<String> extractKeywords(String text) {
         CaseInsensitiveList keywords = getKeywords();
-        List<String> foundKeywords = new ArrayList<>();
+        TreeSet<String> foundKeywords = new TreeSet<>();
 
         if (text == null || text.isEmpty())
-            return Collections.emptyList();
+            return foundKeywords;
 
         String delimiters = "\\s+|,\\s*";
         String[] words = text.split(delimiters);
@@ -32,7 +30,7 @@ public class KeywordsAnalyzer {
     }
 
     public static CaseInsensitiveList getKeywords() {
-        List<String> result = DBHelper.INSTANCE.getKeywords();
+        TreeSet<String> result = DBHelper.INSTANCE.getKeywords();
 
         CaseInsensitiveList keywords = new CaseInsensitiveList();
         keywords.addAll(result);

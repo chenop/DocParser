@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.TreeSet;
 
 import static org.hamcrest.core.Is.is;
 
@@ -30,7 +30,7 @@ public class DBHelperTests {
 
     @Test
     public void getKeywordsTest() {
-        List<String> keywords = DBHelper.INSTANCE.getKeywords();
+        TreeSet<String> keywords = DBHelper.INSTANCE.getKeywords();
 
         Assert.assertNotNull(keywords);
         Assert.assertThat(keywords.isEmpty(), is(false));
