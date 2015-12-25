@@ -1,8 +1,8 @@
-import com.chenop.KeywordsAnalyzer;
+import com.chenop.DocAnalyzer;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.TreeSet;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 
@@ -15,7 +15,7 @@ public class KeywordsAnalyzerTests {
     public void keywordsAnalyzerIgnoreCaseTest() {
         String text = "angularjs, C#, java, GUI, more unrelated stuff";
 
-        TreeSet<String> keywords = KeywordsAnalyzer.extractKeywords(text);
+        List<String> keywords = DocAnalyzer.extractKeywords(text);
         Assert.assertThat(keywords.contains("AngularJS"), is(true));
         Assert.assertThat(keywords.contains("C#"), is(true));
         Assert.assertThat(keywords.contains("Java"), is(true));

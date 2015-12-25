@@ -16,9 +16,9 @@ public class CaseInsensitiveList extends ArrayList<String> {
         return false;
     }
 
-    public String containsAndGetKeyword(String k) {
-        for (String s : this) {
-            if (k.equalsIgnoreCase(s)) return s;
+    public String containsAndGetKeyword(String word) {
+        for (String keyword : this) {
+            if (word.equalsIgnoreCase(keyword)) return keyword;
         }
         return null;
     }

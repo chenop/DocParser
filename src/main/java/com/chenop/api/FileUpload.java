@@ -1,7 +1,8 @@
 package com.chenop.api;
 
-import com.chenop.KeywordsAnalyzer;
+import com.chenop.DocAnalyzer;
 import com.chenop.ParserManager;
+import com.chenop.models.CVData;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
@@ -12,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.InputStream;
-import java.util.TreeSet;
 
 /**
  * Created by Chen.Oppenhaim on 11/18/2015.
@@ -32,8 +32,8 @@ public class FileUpload {
                                @FormDataParam("file") FormDataContentDisposition fileMetaData) throws Exception
     {
         String text = ParserManager.parse(fileInputStream);
-        TreeSet<String> keywords = KeywordsAnalyzer.extractKeywords(text);
+        CVData cvData = DocAnalyzer.extractCVData(text);
 
-        return Response.ok(keywords).build();
+        return Response.ok(cvData).build();
     }
 }
