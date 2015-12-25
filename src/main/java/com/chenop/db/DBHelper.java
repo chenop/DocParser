@@ -1,9 +1,7 @@
 package com.chenop.db;
 
-import com.chenop.models.CaseInsensitiveList;
-
 import java.sql.*;
-import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Created by Chen on 20/12/2015.
@@ -26,8 +24,9 @@ public class DBHelper {
         System.out.println("Opened database successfully");
     }
 
-    public List<String> getKeywords() {
-        CaseInsensitiveList keywords = new CaseInsensitiveList();
+    public TreeSet<String> getKeywords() {
+        TreeSet<String> keywords = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+
         try {
             ResultSet rs = statement.executeQuery("select * from keywords");
             while(rs.next())
