@@ -14,7 +14,8 @@ public class DBHelper {
         // create a database connection
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/Chen/My Projects/DocParser/database/docparser.db");
+//            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/Chen/My Projects/DocParser/database/docparser.db");
+            Connection connection = DriverManager.getConnection("postgres://gsrtifvmtalryd:hQnY0mewfZ2TrM3uIFDYX-Y1h-@ec2-176-34-127-73.eu-west-1.compute.amazonaws.com:5432/dcgoerf6va8iej");
             statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
         } catch (SQLException e) {
