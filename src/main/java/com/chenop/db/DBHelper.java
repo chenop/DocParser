@@ -14,15 +14,27 @@ public class DBHelper {
         // create a database connection
 
         try {
-//            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/Chen/My Projects/DocParser/database/docparser.db");
-            Connection connection = DriverManager.getConnection("postgres://gsrtifvmtalryd:hQnY0mewfZ2TrM3uIFDYX-Y1h-@ec2-176-34-127-73.eu-west-1.compute.amazonaws.com:5432/dcgoerf6va8iej");
+//            initSQLiteStatement();
+            Class.forName("org.postgresql.Driver");
+//            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "selavi99");
+            Connection connection = DriverManager.getConnection("postgres://pddyczaowlneql:BN38pmOp7RwlndHguuK4ixn0qV@ec2-107-20-148-211.compute-1.amazonaws.com:5432/devldeksv6pq1h", "pddyczaowlneql", "BN38pmOp7RwlndHguuK4ixn0qV");
             statement = connection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-        } catch (SQLException e) {
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
 
         System.out.println("Opened database successfully");
+    }
+
+    private void initSQLiteStatement() throws SQLException {
+        //            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/Chen/My Projects/DocParser/database/docparser.db");
+        Connection connection = DriverManager.getConnection("postgres://gsrtifvmtalryd:hQnY0mewfZ2TrM3uIFDYX-Y1h-@ec2-176-34-127-73.eu-west-1.compute.amazonaws.com:5432/dcgoerf6va8iej");
+        statement = connection.createStatement();
+        statement.setQueryTimeout(30);  // set timeout to 30 sec.
     }
 
     public TreeSet<String> getKeywords() {

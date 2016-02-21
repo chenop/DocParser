@@ -43,6 +43,8 @@ public class FileUpload {
     }
 
     private boolean isBase64(String text) {
+        if (!text.contains(","))
+            return false;
         String base64String = text.split(",")[1]; // remove the first part of the string
         return Base64.isBase64(base64String);
     }
