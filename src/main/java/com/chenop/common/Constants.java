@@ -8,6 +8,8 @@ public class Constants {
     public static String DATABASE_USER;
     public static String DATABASE_PASSWORD;
 
+    public static Constants INSTANCE = new Constants();
+
     public Constants() {
         String java_env = System.getenv("JAVA_ENV");
         System.out.println("JAVA_ENV: " + java_env);

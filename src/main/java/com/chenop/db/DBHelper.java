@@ -19,7 +19,7 @@ public class DBHelper {
 //            initSQLiteStatement();
             Class.forName("org.postgresql.Driver");
 //            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "selavi99");
-            Connection connection = DriverManager.getConnection(Constants.DATABASE_URL, Constants.DATABASE_USER, Constants.DATABASE_PASSWORD);
+            Connection connection = DriverManager.getConnection(Constants.INSTANCE.DATABASE_URL, Constants.INSTANCE.DATABASE_USER, Constants.INSTANCE.DATABASE_PASSWORD);
             statement = connection.createStatement();
         }
         catch (ClassNotFoundException e) {
