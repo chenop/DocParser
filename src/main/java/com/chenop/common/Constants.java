@@ -7,7 +7,7 @@ public class Constants {
     public static String DATABASE_URL;
     public static String DATABASE_USER;
     public static String DATABASE_PASSWORD;
-
+    public static String DELIMITERS = "\\s+|,\\s*";
     public static Constants INSTANCE = new Constants();
 
     public Constants() {

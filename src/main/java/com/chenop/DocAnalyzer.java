@@ -1,5 +1,6 @@
 package com.chenop;
 
+import com.chenop.common.Constants;
 import com.chenop.db.DBHelper;
 import com.chenop.models.CVData;
 import com.chenop.models.CaseInsensitiveList;
@@ -11,18 +12,19 @@ import java.util.*;
  */
 public class DocAnalyzer {
 
-    public static List<String> extractKeywords(String text) {
-        CaseInsensitiveList keywords = getKeywords();
+    public static List<String> extractKeywords(String text, CaseInsensitiveList keywords) {
         List<String> foundKeywords = new ArrayList<>();
 
         if (text == null || text.isEmpty())
             return foundKeywords;
 
-        String delimiters = "\\s+|,\\s*";
-        String[] words = text.split(delimiters);
+        String[] words = text.split(Constants.DELIMITERS);
 
-        for (String word : words) {
-            String keyword = keywords.containsAndGetKeyword(word);
+        for (int i = 0; i < words.length; i++) {
+            String firstWord = words[i];
+            String secondWord = i + 1 < words.length ? words[i+1] : null;
+
+            String keyword = keywords.containsAndGetKeyword(firstWord, secondWord);
             if (keyword != null && !foundKeywords.contains(keyword))
                 foundKeywords.add(keyword);
         }
@@ -39,9 +41,10 @@ public class DocAnalyzer {
     }
 
     public static CVData extractCVData(String text) {
-        List<String> keywords = extractKeywords(text);
+        CaseInsensitiveList keywords = getKeywords();
+        List<String> extractKeywords = extractKeywords(text, keywords);
 
-        CVData cvData = new CVData(keywords);
+        CVData cvData = new CVData(extractKeywords);
 
         return cvData;
     }
