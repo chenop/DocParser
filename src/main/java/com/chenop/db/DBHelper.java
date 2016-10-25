@@ -25,7 +25,7 @@ public class DBHelper {
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
 

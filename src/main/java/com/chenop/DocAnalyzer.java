@@ -23,7 +23,7 @@ public class DocAnalyzer {
 
         for (String word : words) {
             String keyword = keywords.containsAndGetKeyword(word);
-            if (keyword != null)
+            if (keyword != null && !foundKeywords.contains(keyword))
                 foundKeywords.add(keyword);
         }
 

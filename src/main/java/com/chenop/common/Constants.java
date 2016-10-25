@@ -16,7 +16,8 @@ public class Constants {
 
         switch (java_env) {
             case "production":
-            case "development": {
+            case "development":
+            default: {
                 DATABASE_URL = "jdbc:postgresql://ec2-107-20-148-211.compute-1.amazonaws.com:5432/devldeksv6pq1h?sslmode=require";
                 DATABASE_USER = "pddyczaowlneql";
                 DATABASE_PASSWORD = "BN38pmOp7RwlndHguuK4ixn0qV";
