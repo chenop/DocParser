@@ -32,14 +32,19 @@ public class FileUpload {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     public Response uploadFile(@FormDataParam("file") InputStream fileInputStream,
-                               @FormDataParam("file") FormDataContentDisposition fileMetaData) throws Exception
+                               @FormDataParam("file") FormDataContentDisposition fileMetaData)
     {
-        String text = ParserManager.parse(fileInputStream);
-        if (isBase64(text))
-            text = decodeBase64ToText(text);
-        CVData cvData = DocAnalyzer.extractCVData(text);
+        try {
+            String text = ParserManager.parse(fileInputStream);
+            if (isBase64(text))
+                text = decodeBase64ToText(text);
+            CVData cvData = DocAnalyzer.extractCVData(text);
 
-        return Response.ok(cvData).build();
+            return Response.ok(cvData).build();
+        }
+        catch (IOException e) {
+            return Response.serverError().build();
+        }
     }
 
     private boolean isBase64(String text) {
