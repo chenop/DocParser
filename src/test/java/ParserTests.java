@@ -47,5 +47,17 @@ public class ParserTests {
 		Assert.assertTrue(cvData.getKeywords().contains("מזכירה"));
 	}
 
+	@Test
+	public void extractEmailTest() throws IOException {
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(DOCX_FILE_PATH);
+
+		String text = ParserManager.parse(inputStream);
+		CVData cvData = DocAnalyzer.extractCVData(text);
+
+		String email = cvData.getEmail();
+		Assert.assertNotNull(email);
+		System.out.println("Found email: " + email);
+	}
+
 
 }

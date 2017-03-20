@@ -6,6 +6,8 @@ import com.chenop.models.CVData;
 import com.chenop.models.CaseInsensitiveList;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Chen.Oppenhaim on 12/20/2015.
@@ -43,9 +45,27 @@ public class DocAnalyzer {
     public static CVData extractCVData(String text) {
         CaseInsensitiveList keywords = getKeywords();
         List<String> extractKeywords = extractKeywords(text, keywords);
+		String email = extractEmail(text);
 
-        CVData cvData = new CVData(extractKeywords);
+		CVData cvData = new CVData(extractKeywords, email);
 
         return cvData;
     }
+
+	public static String extractEmail(String text) {
+		if (text == null || text.isEmpty())
+			return null;
+
+		String[] words = text.split(Constants.DELIMITERS);
+
+		for (int i = 0; i < words.length; i++) {
+			String word = words[i];
+			Matcher matcher = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(word);
+
+			if (matcher.find())
+				return matcher.group();
+		}
+
+		return null;
+	}
 }

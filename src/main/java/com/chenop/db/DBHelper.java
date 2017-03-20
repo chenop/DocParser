@@ -49,7 +49,6 @@ public class DBHelper {
 
                 // read the result set
                 String keywordName = rs.getString("name");
-                System.out.println(keywordName);
 
                 keywords.add(keywordName);
             }

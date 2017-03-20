@@ -17,7 +17,7 @@ import java.io.InputStream;
 /**
  * Created by Chen.Oppenhaim on 11/18/2015.
  */
-@Path("files")
+@Path("/")
 public class DocParserController {
 
     /**
@@ -25,7 +25,7 @@ public class DocParserController {
      */
 
     @POST
-    @Path("upload")
+    @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     public Response upload(@FormDataParam("file") InputStream fileInputStream,
@@ -46,7 +46,7 @@ public class DocParserController {
 
 
 	@GET
-	@Path("wakeup")
+	@Path("/wakeup")
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String wakeup() {

@@ -9,20 +9,23 @@ import java.util.List;
 @XmlRootElement
 public class CVData {
 
-    List<String> keywords;
+	List<String> keywords;
+	private String email;
 
-    public CVData() {
-    }
+	public CVData() {
+	}
 
-    public CVData(List<String> keywords) {
-        this.keywords = keywords;
-    }
+	public CVData(List<String> keywords, String email) {
 
-    public List<String> getKeywords() {
-        return keywords;
-    }
+		this.keywords = keywords;
+		this.email = email;
+	}
 
-    public void setKeywords(List<String> keywords) {
-        this.keywords = keywords;
-    }
+	public List<String> getKeywords() {
+		return keywords;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 }
