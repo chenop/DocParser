@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 
 import static org.hamcrest.core.Is.is;
 
@@ -38,7 +39,7 @@ public class ParserTests {
 	}
 
 	@Test
-	public void extractCVDataTest() throws IOException {
+	public void extractCVDataTest() throws Exception {
 		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(DOCX_FILE_PATH);
 
 		String text = ParserManager.parse(inputStream);
@@ -48,7 +49,7 @@ public class ParserTests {
 	}
 
 	@Test
-	public void extractEmailTest() throws IOException {
+	public void extractEmailTest() throws Exception {
 		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(DOCX_FILE_PATH);
 
 		String text = ParserManager.parse(inputStream);

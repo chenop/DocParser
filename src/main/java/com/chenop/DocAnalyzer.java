@@ -5,6 +5,7 @@ import com.chenop.db.DBHelper;
 import com.chenop.models.CVData;
 import com.chenop.models.CaseInsensitiveList;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,7 +35,7 @@ public class DocAnalyzer {
         return foundKeywords;
     }
 
-    public static CaseInsensitiveList getKeywords() {
+    public static CaseInsensitiveList getKeywords() throws SQLException {
         TreeSet<String> result = DBHelper.INSTANCE.getKeywords();
 
         CaseInsensitiveList keywords = new CaseInsensitiveList();
@@ -42,7 +43,7 @@ public class DocAnalyzer {
         return keywords;
     }
 
-    public static CVData extractCVData(String text) {
+    public static CVData extractCVData(String text) throws SQLException {
         CaseInsensitiveList keywords = getKeywords();
         List<String> extractKeywords = extractKeywords(text, keywords);
 		String email = extractEmail(text);

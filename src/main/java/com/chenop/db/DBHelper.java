@@ -39,7 +39,7 @@ public class DBHelper {
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
     }
 
-    public TreeSet<String> getKeywords() {
+    public TreeSet<String> getKeywords() throws SQLException {
         TreeSet<String> keywords = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
 
         try {
@@ -54,6 +54,7 @@ public class DBHelper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         }
 
         return keywords;

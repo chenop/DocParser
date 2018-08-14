@@ -29,7 +29,7 @@ public class DBHelperTests {
     }
 
     @Test
-    public void getKeywordsTest() {
+    public void getKeywordsTest() throws SQLException {
         TreeSet<String> keywords = DBHelper.INSTANCE.getKeywords();
 
         Assert.assertNotNull(keywords);
